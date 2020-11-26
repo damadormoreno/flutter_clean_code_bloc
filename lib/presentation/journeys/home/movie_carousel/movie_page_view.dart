@@ -3,7 +3,6 @@ import 'package:clean_bloc_movies/common/screen_util/screenutil.dart';
 import 'package:clean_bloc_movies/domain/entities/movie_entity.dart';
 import 'package:clean_bloc_movies/presentation/blocs/movie_backdrop/movie_backdrop_bloc.dart';
 import 'package:clean_bloc_movies/presentation/journeys/home/movie_carousel/animated_movie_card_widget.dart';
-import 'package:clean_bloc_movies/presentation/journeys/home/movie_carousel/movie_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:clean_bloc_movies/common/extensions/size_extension.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

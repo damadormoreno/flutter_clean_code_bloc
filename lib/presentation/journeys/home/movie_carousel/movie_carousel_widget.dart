@@ -1,7 +1,9 @@
 import 'package:clean_bloc_movies/domain/entities/movie_entity.dart';
 import 'package:clean_bloc_movies/presentation/journeys/home/movie_carousel/movie_backdrop_widget.dart';
+import 'package:clean_bloc_movies/presentation/journeys/home/movie_carousel/movie_data_widget.dart';
 import 'package:clean_bloc_movies/presentation/journeys/home/movie_carousel/movie_page_view.dart';
 import 'package:clean_bloc_movies/presentation/widgets/movie_app_bar.dart';
+import 'package:clean_bloc_movies/presentation/widgets/separator.dart';
 import 'package:flutter/material.dart';
 
 class MovieCarouselWidget extends StatelessWidget {
@@ -28,6 +30,8 @@ class MovieCarouselWidget extends StatelessWidget {
               movies: movies,
               initialPage: defaultIndex,
             ),
+            MovieDataWidget(),
+            Separator(),
           ],
         ),
       ],

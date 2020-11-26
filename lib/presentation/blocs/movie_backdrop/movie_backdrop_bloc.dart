@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:clean_bloc_movies/domain/entities/movie_entity.dart';
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
 part 'movie_backdrop_event.dart';
