@@ -3,6 +3,7 @@ import 'package:clean_bloc_movies/presentation/blocs/movie_backdrop/movie_backdr
 import 'package:clean_bloc_movies/presentation/blocs/movie_carousel/movie_carousel_bloc.dart';
 import 'package:clean_bloc_movies/presentation/blocs/movie_tabbed/movie_tabbed_bloc.dart';
 import 'package:clean_bloc_movies/presentation/journeys/drawer/navigation_drawer.dart';
+import 'package:clean_bloc_movies/presentation/journeys/home/movie_carousel/carrusel_load_error_widget.dart';
 import 'package:clean_bloc_movies/presentation/journeys/home/movie_carousel/movie_carousel_widget.dart';
 import 'package:clean_bloc_movies/presentation/journeys/home/movie_tabbed/movie_tabbed_widget.dart';
 import 'package:flutter/material.dart';
@@ -69,7 +70,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
               );
+            } else if (state is MovieCarouselError) {
+              return AppErrorWidget(
+                appErrorType: state.appErrorType,
+                onPressed: () => movieCarouselBloc.add(CarouselLoadEvent()),
+              );
             }
+
             return const SizedBox.shrink();
           },
         ),
