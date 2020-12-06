@@ -1,15 +1,16 @@
 import 'package:clean_bloc_movies/data/core/api_client.dart';
 import 'package:clean_bloc_movies/data/data_sources/movie_remote_data_source.dart';
 import 'package:clean_bloc_movies/data/repositories/movie_repository_impl.dart';
-import 'package:clean_bloc_movies/domain/entities/language_entity.dart';
 import 'package:clean_bloc_movies/domain/repositories/movie_repository.dart';
 import 'package:clean_bloc_movies/domain/usecases/get_coming_soon.dart';
+import 'package:clean_bloc_movies/domain/usecases/get_movie_detail.dart';
 import 'package:clean_bloc_movies/domain/usecases/get_playing_now.dart';
 import 'package:clean_bloc_movies/domain/usecases/get_popular.dart';
 import 'package:clean_bloc_movies/domain/usecases/get_trending.dart';
 import 'package:clean_bloc_movies/presentation/blocs/language_bloc/language_bloc.dart';
 import 'package:clean_bloc_movies/presentation/blocs/movie_backdrop/movie_backdrop_bloc.dart';
 import 'package:clean_bloc_movies/presentation/blocs/movie_carousel/movie_carousel_bloc.dart';
+import 'package:clean_bloc_movies/presentation/blocs/movie_detail/movie_detail_bloc.dart';
 import 'package:clean_bloc_movies/presentation/blocs/movie_tabbed/movie_tabbed_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart';
@@ -36,6 +37,9 @@ Future init() async {
   getItInstance.registerLazySingleton<GetPlayingNow>(
       () => GetPlayingNow(getItInstance()));
 
+  getItInstance.registerLazySingleton<GetMovieDetail>(
+      () => GetMovieDetail(getItInstance()));
+
   getItInstance.registerLazySingleton<MovieRepository>(
       () => MovieRepositoryImpl(getItInstance()));
 
@@ -47,10 +51,13 @@ Future init() async {
   getItInstance.registerFactory(() => MovieBackdropBloc());
 
   getItInstance.registerFactory(() => MovieTabbedBloc(
-        getPopular: GetPopular(getItInstance()),
-        getComingSoon: GetComingSoon(getItInstance()),
-        getPlayingNow: GetPlayingNow(getItInstance()),
+        getPopular: getItInstance(),
+        getComingSoon: getItInstance(),
+        getPlayingNow: getItInstance(),
       ));
 
   getItInstance.registerSingleton<LanguageBloc>(LanguageBloc());
+
+  getItInstance
+      .registerFactory(() => MovieDetailBloc(getMovieDetail: getItInstance()));
 }

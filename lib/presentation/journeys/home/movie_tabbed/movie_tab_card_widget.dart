@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:clean_bloc_movies/common/constants/size_constans.dart';
 import 'package:clean_bloc_movies/data/core/api_constants.dart';
+import 'package:clean_bloc_movies/presentation/journeys/movie_detail/movie_detail_arguments.dart';
+import 'package:clean_bloc_movies/presentation/journeys/movie_detail/movie_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:clean_bloc_movies/common/extensions/size_extension.dart';
 import 'package:clean_bloc_movies/common/extensions/string_extensions.dart';
@@ -18,7 +20,11 @@ class MovieTabCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (BuildContext context) => MovieDetailScreen(
+                movieDetailArguments: MovieDetailArguments(movieId))));
+      },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
